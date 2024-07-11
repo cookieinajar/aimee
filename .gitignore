@@ -1,18 +1,2 @@
-# Temporary files
-*.tmp
+# Log files
 *.log
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Editor specific files
-.vscode/
-.idea/
-
-# Build artifacts
-build/
-dist/
-
-# Personal configuration files
-config/local.yml
