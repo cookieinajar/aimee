@@ -6,6 +6,7 @@ log() {
   local level="$1"
   local message="$2"
   local line_no="${BASH_LINENO[0]}"
+  local file_name="$(basename "${BASH_SOURCE[1]}")"
   local color=""
   local prefix=""
 
@@ -36,9 +37,9 @@ log() {
     ;;
   esac
 
-  # Log to file with timestamp and line number
+  # Log to file with timestamp, filename, and line number
   local log_message
-  log_message="$(date '+%Y-%m-%d %H:%M:%S') $prefix $message (Line: $line_no)"
+  log_message="$(date '+%Y-%m-%d %H:%M:%S') $prefix $message (File: $file_name, Line: $line_no)"
 
   # Append to log file
   if ! echo "$log_message" >>"$LOG_FILE"; then
@@ -48,7 +49,7 @@ log() {
   # Print to console without timestamp
   local console_message="$prefix $message"
   if [[ "$level" == "ERROR" || "$level" == "FATAL" ]]; then
-    console_message+=" (Line: $line_no)"
+    console_message+=" (File: $file_name, Line: $line_no)"
   fi
   printf "%b%s%b\n" "${color}" "${console_message}" "${NC}" >&2
 
