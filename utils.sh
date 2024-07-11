@@ -6,7 +6,8 @@ log() {
   local level="$1"
   local message="$2"
   local line_no="${BASH_LINENO[0]}"
-  local file_name="$(basename "${BASH_SOURCE[1]}")"
+  local file_name
+  file_name="$(basename "${BASH_SOURCE[1]}")"
   local color=""
   local prefix=""
 
