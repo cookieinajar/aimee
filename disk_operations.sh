@@ -11,7 +11,8 @@ disk_partition() {
 
   log "INFO" "Partitioning the disk"
   log "DEBUG" "Currently mounted partitions:"
-  lsblk -o NAME,MOUNTPOINT | log "DEBUG"
+  lsblk_output=$(lsblk -o NAME,MOUNTPOINT)
+  log "DEBUG" "$lsblk_output"
   log "DEBUG" "About to partition disk. target_disk=$target_disk"
   if mountpoint -q "/dev/$target_disk"; then
     log "ERROR" "Target disk is currently mounted. Please unmount it before proceeding."
