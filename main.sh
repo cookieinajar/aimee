@@ -27,13 +27,16 @@ main() {
   rotate_log
   log "INFO" "Starting Arch Linux installation script"
 
+  log "DEBUG" "About to call display_warnings"
   display_warnings
+  log "DEBUG" "About to call get_user_confirmation"
   if ! get_user_confirmation; then
     log "INFO" "Installation cancelled by user. Exiting."
     exit 0
   fi
-
+  log "DEBUG" "About to call check_info"
   check_info || exit 1
+  log "DEBUG" "check_info completed successfully"
   prepare_installation || exit 1
   install_base_system || exit 1
   finalize_installation || exit 1
