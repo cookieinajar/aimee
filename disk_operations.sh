@@ -11,7 +11,7 @@ disk_partition() {
 
   log "INFO" "Partitioning the disk"
   log "DEBUG" "Currently mounted partitions:"
-  lsblk_output=$(lsblk -o NAME,MOUNTPOINT)
+  lsblk_output=$(lsblk -o NAME,SIZE,FSTYPE,TYPE,MOUNTPOINT)
   log "DEBUG" "$lsblk_output"
   log "DEBUG" "About to partition disk. target_disk=$target_disk"
   if mountpoint -q "/dev/$target_disk"; then
